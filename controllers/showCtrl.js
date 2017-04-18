@@ -23,6 +23,26 @@ module.exports.getShow = ({params: {id}}, res, next) => {
   });
 };
 
+module.exports.addShow = ({body}, res, next) => {
+  Show.forge(body)
+  .save()
+  .then( () => res.status(201).json({"msg": "Nice POST, brah"}))
+  .catch( (error) => {
+    next(err);
+  });
+};
+
+module.exports.deleteShow = ({params: {id}}, res, next) => {
+  Show.forge({id})
+  .destroy()
+  .then( (show) => {
+    res.status(202).json(show);
+  })
+  .catch( (err) => {
+    next(err);
+  });
+};
+
 module.exports.getShowFaves = ({query: {showId}}, res, next) => {
   console.log("The query string", showId);
   Show.forge({id: showId})
@@ -34,3 +54,5 @@ module.exports.getShowFaves = ({query: {showId}}, res, next) => {
     next(err);
   });
 };
+
+
