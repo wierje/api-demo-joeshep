@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -7,7 +9,7 @@ var routes = require('./routes/');
 
 var app = express();
 
-// This 'if' statement prevents application log messages from 
+// This 'if' statement prevents application log messages from
 // displaying in the stdout when the tests are run
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));

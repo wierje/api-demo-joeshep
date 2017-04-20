@@ -16,7 +16,7 @@ module.exports.getShows = (req, res, next) => {
 module.exports.getShow = ({params: {id}}, res, next) => {
   Show.getSingleShow(id)
   .then( (show) => {
-    res.status(200).json(show)
+    res.status(200).json(show);
   })
   .catch( (error) => {
     next(error);
@@ -28,7 +28,7 @@ module.exports.addShow = ({body}, res, next) => {
   .save()
   .then( () => res.status(201).json({"msg": "Nice POST, brah"}))
   .catch( (error) => {
-    next(err);
+    next(error);
   });
 };
 
@@ -48,11 +48,9 @@ module.exports.getShowFaves = ({query: {showId}}, res, next) => {
   Show.forge({id: showId})
   .fetch({withRelated: ['upvotes'], require: true})
   .then( (faves) => {
-    res.status(200).json(faves)
+    res.status(200).json(faves);
   })
   .catch( (err) => {
     next(err);
   });
 };
-
-
