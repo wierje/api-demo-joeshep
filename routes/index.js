@@ -3,17 +3,10 @@
 const { Router } = require('express');
 const router = Router();
 
-const {
-  getShows,
-  getShow,
-  getShowFaves,
-  addShow,
-  deleteShow } = require('../controllers/showCtrl');
+router.use(require('./shows'));
 
-router.get('/shows', getShows);
-router.post('/shows/new', addShow);
-router.get('/shows/favorites', getShowFaves);
-router.get('/shows/:id', getShow);
-router.delete('/shows/:id', deleteShow);
+router.get('/', function(req, res) {
+    res.json({
 
-module.exports = router;
+    });
+});
